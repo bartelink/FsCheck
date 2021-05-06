@@ -713,3 +713,7 @@ module Arbitrary =
             failwith "Test should have failed because UriBuilder can not be generated"
         with exn as e ->
             test <@ e.Message.Contains("is not handled automatically by FsCheck") @>
+
+    [<Fact>]
+    let ``Derive generator for csharp record type``() =
+        generate<FsCheck.Test.CSharp.RgbColor> |> sample 10 |> ignore
